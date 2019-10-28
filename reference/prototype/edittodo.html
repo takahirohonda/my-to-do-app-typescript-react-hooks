@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>To do front page prototype</title>
+  <link rel="stylesheet" href="css/custom-style.css">
+  <script src="js/custom-functions.js"></script>
+  <script src="js/main.js"></script>
+</head>
+  <body>
+      <div class="nav-menu-background"></div>
+    <div class="details-right-nav-menu">
+      <ul class="details-right-nav-ul">
+        <li class="details-right-nav-ls details-delete-all-btn">Delete all</li>
+      </ul>
+    </div>
+
+    <div class="sort-right-nav-menu">
+      <ul class="sort-right-nav-ul">
+        <li class="sort-right-nav-ls">Created date</li>
+        <li class="sort-right-nav-ls">A to Z</li>
+        <li class="sort-right-nav-ls">Z to A</li>
+      </ul>
+    </div>
+
+    <div class="add-task-container">
+      <header class="edit-task-header">
+          <div class="edit-task-header-top">
+          <img src="img/icons/arrow-left.svg" alt="left arrow" class="left-arrow-icon back-to-details" />
+          <img src="img/icons/trash-alt.svg" alt="trash can" class="trash-icon trash-task" />
+        </div>
+        <div class="task-input-container">
+          <input type="text" class="task-input-field" placeholder="Add task here..." />
+        </div>
+        <div class="task-input-save-tick">&#x2713;</div>
+      </header>
+    </div>
+
+    <div class="edit-task-container">
+      <header class="edit-task-header">
+        <div class="edit-task-header-top">
+          <img src="img/icons/arrow-left.svg" alt="left arrow" class="left-arrow-icon back-to-details-from-edit" />
+          <img src="img/icons/trash-alt.svg" alt="trash can" class="trash-icon trash-task" />
+        </div>
+        <div class="task-input-container">
+          <input type="text" class="task-input-field" value="Service my lawn mower" />
+        </div>
+        <div class="task-input-save-tick">&#x2713;</div>
+      </header> <!-- end of edit-task-header -->
+      <div class="radio-button-container" role="radiogroup">
+        <div class="radio-button-group" tabindex="0">
+          <input type="radio" class="radio-input" id="todo" name="status-group" value="todo" checked>
+          <label class="radio-label" for="todo">
+            <span class="ph-tick"></span>
+            To do
+          </label>
+        </div>
+        <div class="radio-button-group" tabindex="0">
+          <input type="radio" class="radio-input" id="doing" name="status-group" value="doing">
+          <label class="radio-label" for="doing">
+            <span class="ph-tick"></span>
+            Doing
+          </label>
+        </div>
+        <div class="radio-button-group" tabindex="0">
+          <input type="radio" class="radio-input" id="done" name="status-group" value="done">
+          <label class="radio-label" for="done">
+            <span class="ph-tick"></span>
+            Done
+          </label>
+        </div>
+        <div class="radio-button-group" tabindex="0">
+          <input type="radio" class="radio-input" id="backlog" name="status-group" value="backlog">
+          <label class="radio-label" for="backlog">
+            <span class="ph-tick"></span>
+            Backlog
+          </label>
+        </div>  
+      </div>
+      <section class="edit-task-section">
+        
+      </section> <!-- end of edit-task-section -->
+
+      <div class="edit-option-container">
+        
+      </div>
+    </div><!-- end of edit-task-container -->
+
+    <!-- Delete confirm form -->
+  <div class="delete-confirm-form-container-details">
+      <form class="delete-confirm-form">
+        <p class="delete-confirm-message">Are you sure to delete all?</p>
+        <div class="form-button-container">
+          <button type="button" class="submit-button delete-all-confirm-btn">Confirm</button>
+          <button type="button" class="cancel-button delete-all-cancel-btn">Cancel</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="detail-task-container">
+      <div class="details-header-top-container">
+        <div class="details-header-section-container">
+          <img src="img/icons/arrow-left.svg" alt="left arrow" class="left-arrow-icon back-to-summary" />
+          <span class="details-header-title">To do (5)</span>
+        </div>
+        <div class="details-header-section-container">
+          <img src="img/icons/sort.svg" alt="sort" class="sort-icon" />
+          <img src="img/icons/ellipsis-v.svg" alt="sort" class="ellipsis-v-icon" />
+        </div>
+      </div>
+      <section class="list-section">
+        <div class="item-outer-container">
+          <div class="item-inner-container" draggable>
+            <p class="item">
+              1. Service my lawn mower
+            </p>
+            <hr />
+          </div>
+        </div>
+        <div class="item-outer-container">
+          <div class="item-inner-container">
+            <p class="item">
+              2. Go shopping
+            </p>
+            <hr />
+          </div>
+        </div>
+        <div class="item-outer-container">
+          <div class="item-inner-container">
+            <p class="item">
+              3. Water the gargen
+            </p>
+            <hr />
+          </div>
+        </div>
+      </section>
+      <div class="grey-space"></div>
+      <div class="add-icon">
+        <span class="plus-sign">+</span>
+      </div>
+    </div> 
+  </body>
+</html>

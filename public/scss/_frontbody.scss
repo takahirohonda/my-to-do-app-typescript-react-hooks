@@ -1,0 +1,76 @@
+
+// @import './variables';
+
+.main-container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+.main-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+.summary-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  padding: 20px;
+}
+.to-do-summary {
+  background-color:  #F78888;
+}
+.doing-summary {
+  background-color: #F3D250;
+}
+.done-summary {
+  background-color: #4dc461;
+}
+.backlog-summary {
+  background-color:  #0087d6;
+}
+.summary-title {
+  font-size: 2rem;
+  color: #000000;
+}
+.summary-circle {
+  background-color:#ECECEC;
+  border-radius: 50%;
+  position: relative;
+  height: 150px;
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.summary-section.active {
+  height: 100%;
+  width: 100%;
+  transition: all 0.15s ease-in-out;
+}
+
+.summary-section.inactive {
+  height: 0px;
+  width: 0px;
+  overflow: hidden;
+  transition: all 0.15 ease-in-out;
+}
+
+.to-do-summary-circle {
+  border: solid #ff7070 1.25rem;
+}
+.doing-summary-circle {
+  border: solid #ecbd00 1.25rem;
+}
+.done-summary-circle {
+  border: solid #2bbd44 1.25rem;
+}
+.backlog-summary-circle {
+  border: solid #0076bb 1.25rem;
+}
+.summary-count {
+  font-size: 2rem;
+  color: black;
+}

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>To do front page prototype</title>
+  <link rel="stylesheet" href="css/custom-style.css">
+  <script src="js/custom-functions.js"></script>
+  <script src="js/main.js"></script>
+</head>
+
+<body>
+  <div class="nav-menu-background"></div>
+  <div class="left-nav-menu">
+    <div class="left-nav-header">
+      <h1 class="left-nav-header-logo">mtd</h1>
+    </div>
+    <ul class="left-nav-ul">
+
+      <li class="left-nav-ls active">
+        <div class="mdt-list-item-right">
+          <span class="square-bullet"></span>
+          <span>Personal</span>
+        </div>
+        <div class="mdt-list-item-left">
+          <div class="mtd-list-remove-btn"> &#10007;</div>
+        </div>
+      </li>
+
+      <li class="left-nav-ls">
+        <div class="mdt-list-item-right">
+          <span class="square-bullet"></span>
+          <span>Work</span>
+        </div>
+        <div class="mdt-list-item-left">
+          <div class="mtd-list-remove-btn"> &#10007;</div>
+        </div>
+      </li>
+      <li class="left-nav-ls">
+        <div class="mdt-list-item-right">
+          <span class="square-bullet"></span>
+          <span>Kids</span>
+        </div>
+        <div class="mdt-list-item-left">
+          <div class="mtd-list-remove-btn"> &#10007;</div>
+        </div>
+      </li>
+      <li class="left-nav-ls" id="add-list-btn">
+        <div class="mdt-list-item-right">
+          <span class="add-list-plus">+</span>Add list
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="right-nav-menu">
+    <ul class="right-nav-ul">
+      <li class="right-nav-ls" id="add-category-btn">Add Category</li>
+      <li class="right-nav-ls" id="delete-category-btn">Delete Category</li>
+    </ul>
+  </div>
+  <!-- add category form -->
+  <div class="add-category-form-container">
+    <form class="add-category-form">
+      <label for="category" class="form-label">Category</label>
+      <input type="text" class="form-input" id="category" name="category" placeholder="Add new category name..."
+        required aria-required="true">
+      <label for="todofieldname" class="form-label">To do</label>
+      <input type="text" class="form-input" id="todofieldname" name="todofieldname"
+        placeholder="Add To do field name..." required aria-required="true">
+      <label for="doingfieldname" class="form-label">Doing</label>
+      <input type="text" class="form-input" id="doingfieldname" name="doingfieldname"
+        placeholder="Add Doing field name..." required aria-required="true">
+      <label for="donefieldname" class="form-label">Done</label>
+      <input type="text" class="form-input" id="donefieldname" name="donefieldname" placeholder="Add Done field name..."
+        required aria-required="true">
+      <label for="backlogfieldname" class="form-label">Backlog</label>
+      <input type="text" class="form-input" id="backlogfieldname" name="backlogfieldname"
+        placeholder="Add Backlog field name..." required aria-required="true">
+      <div class="form-button-container">
+        <button type="button" class="submit-button">Add</button>
+        <button type="button" class="cancel-button">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <!-- delete category form -->
+  <div class="delete-category-form-container">
+    <form class="delete-category-form">
+      <div class="checkbox-group" tabindex="0">
+        <input type="checkbox" class="checkbox-input" id="category-todo" name="category-todo">
+        <label class="radio-label" for="category-todo">
+          <span class="ph-tick"></span>
+          To Do
+        </label>
+      </div>
+      <div class="checkbox-group" tabindex="0">
+        <input type="checkbox" class="checkbox-input" id="category-tolearn" name="category-tolearn">
+        <label class="radio-label" for="category-tolearn">
+          <span class="ph-tick"></span>
+          To Learn
+        </label>
+      </div>
+      <div class="checkbox-group" tabindex="0">
+        <input type="checkbox" class="checkbox-input" id="category-toask" name="category-toask">
+        <label class="radio-label" for="category-toask">
+          <span class="ph-tick"></span>
+          To Ask
+        </label>
+      </div>
+      <div class="checkbox-group" tabindex="0">
+        <input type="checkbox" class="checkbox-input" id="category-toread" name="category-toread">
+        <label class="radio-label" for="category-toread">
+          <span class="ph-tick"></span>
+          To Read
+        </label>
+      </div>
+      <div class="form-button-container">
+        <button type="button" class="submit-button">Delete</button>
+        <button type="button" class="cancel-button">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- pop up form container background -->
+  <div class="add-list-form-container-background"></div>
+
+  <!-- add list form -->
+  <div class="add-list-form-container-background"></div>
+  <div class="add-list-form-container">
+    <form class="add-list-form">
+      <label for="category" class="form-label">List</label>
+      <input type="text" class="form-input" id="category" name="category" placeholder="Add new list name..." required
+        aria-required="true">
+      <div class="form-button-container">
+        <button type="button" class="submit-button submit-list-btn">Add</button>
+        <button type="button" class="cancel-button cancel-list-btn">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Delete confirm form -->
+  <div class="delete-confirm-form-container">
+    <form class="delete-confirm-form">
+      <p class="delete-confirm-message">Are you sure to delete this?</p>
+      <div class="form-button-container">
+        <button type="button" class="submit-button submit-list-btn">Confirm</button>
+        <button type="button" class="cancel-button cancel-list-btn">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <nav class="header-navigation">
+    <div class="header-left">
+      <!-- Toggle Icon -->
+      <div class="nav-burger-container">
+        <span class="nav-burger-icon"></span>
+        <span class="nav-burger-icon"></span>
+        <span class="nav-burger-icon"></span>
+      </div>
+      <!-- Category selector -->
+      <select id="category" class="nav-bar-select" name="category">
+        <option value="all">All categories</option>
+        <option value="do">To Do</option>
+        <option value="learn">To Learn</option>
+        <option value="ask">To Ask</option>
+        <option value="read">To read</option>
+        <option value="decide">To Decide</option>
+        <option value="watch">To Watch</option>
+        <option value="listen">To Listen</option>
+        <option value="shop">To Shop</option>
+      </select>
+    </div>
+    <div class="header-right">
+      <span class="nav-dot">&#8942;</span>
+    </div>
+  </nav>
+  <section class="main-container">
+    <div class="main-row">
+      <div class="summary-section to-do-summary">
+        <div class="summary-title">To Do</div>
+        <div class="summary-circle to-do-summary-circle ">
+          <span class="summary-count">3</span>
+        </div>
+      </div>
+      <div class="summary-section doing-summary">
+        <div class="summary-title">Doing</div>
+        <div class="summary-circle doing-summary-circle ">
+          <span class="summary-count">1</span>
+        </div>
+      </div>
+      <div class="summary-section done-summary">
+        <div class="summary-title">Done</div>
+        <div class="summary-circle done-summary-circle ">
+          <span class="summary-count">13</span>
+        </div>
+      </div>
+      <div class="summary-section backlog-summary">
+        <div class="summary-title">Backlog</div>
+        <div class="summary-circle backlog-summary-circle ">
+          <span class="summary-count">13</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    // Calculate square hight & circle size
+    mtd.public.updateSummarySquareHeight();
+    mtd.public.updateSummaryCountCircleSize();
+
+    // Calculate square hight & circle size on window resize event
+    window.addEventListener('resize', () => {
+      mtd.public.updateSummarySquareHeight();
+      mtd.public.updateSummaryCountCircleSize();
+    });
+  </script>
+</body>
+
+</html>

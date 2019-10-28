@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Galada|Source+Sans+Pro&display=swap');
+// @import './variables';
+
+body {
+  font-family: $mainFont, $mainFontFallBack;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+*::before,
+*::after {
+  box-sizing: inherit;
+}

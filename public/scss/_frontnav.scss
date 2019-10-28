@@ -1,0 +1,73 @@
+// @import './variables';
+
+.header-navigation {
+  background-color: $blackFrontNavBg;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 5px 5px 5px;
+  width: 100%;
+}
+
+.header-left {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+.nav-burger-container {
+  display: flex;
+  flex-direction: column;
+  width: 44px;
+  height: 16px;
+  border: none;
+  background: transparent;
+  justify-content: space-between;
+  margin: 5px 10px 10px 10px;
+}
+
+.nav-burger-icon {
+  width: 20px;
+  height: 2px;
+  background-color: white;
+  display: block;    
+}
+
+.header-right {
+  display: flex;
+  margin-right: 10px;
+  align-items: center;
+}
+
+.header-right {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.nav-dot {
+  display: block;
+  font-size: 1.75rem;
+  color: $white;
+  line-height: 1em;
+  padding-top: 0px;
+}
+
+.nav-bar-select {
+  background-color: $blackFrontNavBg;
+  font-family: 'Galada', cursive;
+  font-size: 1.125rem;
+  color: $white;
+  border: 0px;
+  width: 100%;
+  padding-left: 10px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  text-overflow:'';
+  text-indent: 0.01px; /* Removes default arrow from firefox*/
+  text-overflow: "";  /*Removes default arrow from firefox*/
+
+  &:focus {
+    outline: none;
+  }
+}
+

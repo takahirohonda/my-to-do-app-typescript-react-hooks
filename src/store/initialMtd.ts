@@ -1,4 +1,6 @@
-export const initialMtd = [
+import { IListData } from '../types/models'
+
+export const initialMtd: Array<IListData> = [
   {
     listName: 'Personal',
     listDetails: [
@@ -92,7 +94,119 @@ export const initialMtd = [
             tasks: []
           }
         ]
+      },
+
+      {
+        categoryName: 'To Read',
+        details: [
+          {
+            fieldName: 'To read',
+            tasks: []
+          },
+          {
+            fieldName: 'Reading',
+            tasks: []
+          },
+          {
+            fieldName: 'Read',
+            tasks: []
+          },
+          {
+            fieldName: 'Backlog',
+            tasks: []
+          }
+        ]
+      },
+
+      {
+        categoryName: 'To Decide',
+        details: [
+          {
+            fieldName: 'To decide',
+            tasks: []
+          },
+          {
+            fieldName: 'Deciding',
+            tasks: []
+          },
+          {
+            fieldName: 'Decided',
+            tasks: []
+          },
+          {
+            fieldName: 'Backlog',
+            tasks: []
+          }
+        ]
+      },
+
+      {
+        categoryName: 'To Watch',
+        details: [
+          {
+            fieldName: 'To watch',
+            tasks: []
+          },
+          {
+            fieldName: 'Watching',
+            tasks: []
+          },
+          {
+            fieldName: 'Watched',
+            tasks: []
+          },
+          {
+            fieldName: 'Backlog',
+            tasks: []
+          }
+        ]
+      },
+
+      {
+        categoryName: 'To Listen',
+        details: [
+          {
+            fieldName: 'To listen',
+            tasks: []
+          },
+          {
+            fieldName: 'Listening',
+            tasks: []
+          },
+          {
+            fieldName: 'Listened',
+            tasks: []
+          },
+          {
+            fieldName: 'Backlog',
+            tasks: []
+          }
+        ]
+      },
+
+      {
+        categoryName: 'To Buy',
+        details: [
+          {
+            fieldName: 'To buy',
+            tasks: []
+          },
+          {
+            fieldName: 'Buying',
+            tasks: []
+          },
+          {
+            fieldName: 'Bought',
+            tasks: []
+          },
+          {
+            fieldName: 'Backlog',
+            tasks: []
+          }
+        ]
       }
+
+
     ]
   },
 

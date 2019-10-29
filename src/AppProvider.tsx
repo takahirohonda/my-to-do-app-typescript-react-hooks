@@ -4,6 +4,11 @@ import {
   initialStateCurrent,
   initialStateUi
 } from './store/initialState'
+import {
+  IListData,
+  ICurrentData,
+  IUiData
+} from './types/models'
 import { useState } from 'react'
 import {
   DataContext,
@@ -16,14 +21,14 @@ interface IMovieProviderProps {
 }
 
 const AppProvider = (props: IMovieProviderProps) => {
-  const [appData, setAppData] = useState<any>(initialStateMtd)
-  const [currentData, setCurrentData] = useState<any>(initialStateCurrent)
-  const [UiData, setUiData] = useState<any>(initialStateUi)
+  const [appData, setAppData] = useState<Array<IListData>>(initialStateMtd)
+  const [currentData, setCurrentData] = useState<ICurrentData>(initialStateCurrent)
+  const [uiData, setUiData] = useState<IUiData>(initialStateUi)
 
   return (
     <DataContext.Provider value={[appData, setAppData]}>
       <CurrentContext.Provider value={[currentData, setCurrentData]}>
-        <UiContext.Provider value={[UiData, setUiData]}>
+        <UiContext.Provider value={[uiData, setUiData]}>
           {props.children}
         </UiContext.Provider>
       </CurrentContext.Provider>

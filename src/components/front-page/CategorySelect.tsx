@@ -14,12 +14,21 @@ import { getCategoryList } from '../utils/getCategoryList'
 const CategorySelect = () => {
   const [ currentData, setCurrentData ] = useContext<[ICurrentData, React.Dispatch<React.SetStateAction<ICurrentData>>]>(CurrentContext)
   const [ appData, setAppData ] = useContext<[Array<IListData>, React.Dispatch<React.SetStateAction<Array<IListData>>>]>(DataContext)
-  console.log(appData)
   const categoryList = getCategoryList(currentData, appData)
-  console.log(categoryList)
+
+  // update category data from select onChange event
+  const updateCategory = (e: React.FormEvent<HTMLSelectElement>) => {
+    e.persist()
+    setCurrentData((prevCurrentData: ICurrentData) => {
+      return {
+        ...prevCurrentData,
+        currentCategoryName: (e.target as HTMLSelectElement).value
+      }
+    })
+  }
 
   return (
-    <select id='category' className='nav-bar-select' name='category'>
+    <select id='category' className='nav-bar-select' name='category' onChange={updateCategory}>
       <option value='all'>All categories</option>
       {categoryList.map((category, index) => {
         return (

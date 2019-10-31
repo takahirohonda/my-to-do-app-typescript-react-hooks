@@ -42,3 +42,8 @@ export interface IUiData {
   deleteAllConfirm: boolean
 }
 
+// Models for UI display transformed data
+export interface ICurrentCategoryFieldNameAndCount {
+  fieldName: string
+  count: number
+}

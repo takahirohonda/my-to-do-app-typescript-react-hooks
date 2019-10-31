@@ -5,7 +5,6 @@ import FrontMainSection from './front-page/FrontMainSection'
 const FrontPage = () => {
   return (
     <React.Fragment>
-      <FrontHeader />
       <FrontMainSection />
     </React.Fragment>
   )

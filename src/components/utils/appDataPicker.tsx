@@ -3,7 +3,8 @@ import {
   ICurrentData,
   IListDetails,
   IDetails,
-  ICurrentCategoryFieldNameAndCount
+  ICurrentCategoryFieldNameAndCount,
+  ITasks
 } from '../../types/models'
 
 // Return an the current list details for the selected list
@@ -22,17 +23,20 @@ export const getCurrentCategoryDetails = (currentListDetails: Array<IListDetails
   .details
 }
 
-export const getCurrentCategoryFieldNameAndCount = (details: Array<IDetails>): Array<ICurrentCategoryFieldNameAndCount> => {
-
+export const getCurrentCategoryFieldNameAndCount = (currentCategoryDetails: Array<IDetails>): Array<ICurrentCategoryFieldNameAndCount> => {
   const output: Array<ICurrentCategoryFieldNameAndCount> = []
-
-  details.forEach((detail: IDetails) => {
+  currentCategoryDetails.forEach((detail: IDetails) => {
     output.push({
       fieldName: detail.fieldName,
       count: (detail.tasks || []).length
     })
   })
   return output
-
 }
 
+// This is to display task list in details main section
+export const getCurrentFieldTaskList = (currentDetails: Array<IDetails>, currentFieldName: string): Array<ITasks> => {
+  return currentDetails
+  .filter((detail: IDetails) => detail.fieldName.toLowerCase() === currentFieldName.toLowerCase())[0]
+  .tasks
+}

@@ -1,0 +1,23 @@
+.item-outer-container {
+  margin: 5px;
+}
+
+.item-inner-container:hover {
+ background-color: #ffd9d9;
+}
+.item-inner-container:hover hr {
+  display: none;
+}
+.item {
+  padding: 10px;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+hr {
+  width: 100%;
+  color: #4b4b4b;
+}
+
+.grey-space {
+  flex-grow: 1;
+  background-color: #f4f4f4;
+}

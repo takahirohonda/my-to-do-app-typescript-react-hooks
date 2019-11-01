@@ -1,5 +1,4 @@
 import * as React from 'react'
-import FrontHeader from './front-page/FrontHeader'
 import FrontMainSection from './front-page/FrontMainSection'
 
 const FrontPage = () => {

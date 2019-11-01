@@ -1,0 +1,47 @@
+.submit-button {
+  background-color: #ff7070;
+  color: white;
+  border: 1px solid #ff7070;
+  width: 120px;
+  height: 40px;
+  font-size: 1.125rem;
+  margin: 10px 10px;
+}
+
+.submit-button:active,
+.submit-button:hover {
+  background-color: white;
+  color: #ff7070;;
+  border: 1px solid #ff7070;
+  width: 120px;
+  height: 40px;
+  outline: none;
+}
+
+.submit-button:focus {
+  outline: none;
+}
+
+.cancel-button {
+  background-color: #866768;
+  color: white;
+  border: 1px solid #866768;
+  width: 120px;
+  height: 40px;
+  font-size: 1.125rem;
+  margin: 10px 10px;
+}
+
+.cancel-button:active,
+.cancel-button:hover {
+  background-color: white;
+  color:  #866768;
+  border: 1px solid #866768;
+  width: 120px;
+  height: 40px;
+  outline: none;
+}
+
+.cancel-button:focus {
+  outline: none;
+}

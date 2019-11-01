@@ -1,0 +1,125 @@
+.detail-task-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.details-header-top-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: #F78888;
+}
+.details-header-section-container {
+  display: flex;
+  align-items: center;
+  margin: 20px 15px;
+}
+.left-arrow-icon {
+  width: 15px;
+}
+.trash-icon {
+  width: 15px;
+  margin-right: 5px;
+}
+.details-header-title {
+  margin-left: 20px;
+  font-size: 1.25rem;
+}
+.sort-icon {
+  width: 15px;
+  margin: 0 10px 0 10px;
+}
+
+.ellipsis-v-icon {
+  width: 7px;
+  margin: 0 10px 0 10px;
+}
+
+.add-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background-color: #F78888;
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.plus-sign {
+  color: white;
+  font-size: 2.5rem
+}
+
+.details-right-nav-menu {
+  background-color: #F78888;
+  color: white;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  padding: 0px;
+  font-family: 'Source Sans Pro', sans-serif;
+  z-index: 10;
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
+}
+
+.details-right-nav-menu.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 100px;
+  transition: all 0.15s ease-in;
+}
+
+.details-right-nav-ul {
+  list-style-type: none;
+}
+
+.sort-right-nav-menu {
+  background-color: #F78888;
+  color: white;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  padding: 0px;
+  font-family: 'Source Sans Pro', sans-serif;
+  z-index: 10;
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
+}
+
+.sort-right-nav-menu.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 100px;
+  transition: all 0.15s ease-in;
+}
+
+.sort-right-nav-ul {
+  list-style-type: none;
+}
+
+.nav-menu-background.active {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  background-color: #020202a1;
+  opacity: 10%;
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;  
+}

@@ -12,3 +12,7 @@ Uninstalled extract-text-webpack-plugin and installed next
 
 npm uninstall extract-text-webpack-plugin
 npm i --save-dev extract-text-webpack-plugin@next
+
+# (4) React router
+
+npm i react-router-dom @types/history @types/react-router-dom

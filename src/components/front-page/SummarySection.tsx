@@ -16,6 +16,8 @@ import {
   getCurrentCategoryFieldNameAndCount
 } from '../utils/appDataPicker'
 
+import { Link } from 'react-router-dom'
+
 const summarySectionClassNamePrefix = ['to-do', 'doing', 'done', 'backlog']
 
 const SummarySection = () => {
@@ -27,15 +29,28 @@ const SummarySection = () => {
         getCurrentListDetails(appData, currentData.currentListName), currentData.currentCategoryName
       ))
 
+  const updateCurrentFieldName = (fieldName: string) => {
+    setCurrentData((prevCurrentData: ICurrentData) => {
+      return {
+        ...prevCurrentData,
+        currentFieldName: fieldName
+      }
+    })
+  }
+
   return (
     <React.Fragment>
       {(currentCategoryFieldNameAndCount || []).map((data: ICurrentCategoryFieldNameAndCount, index: number) => {
         return (
           <div className={`summary-section ${summarySectionClassNamePrefix[index]}-summary`} key={index}>
             <div className='summary-title'>{data.fieldName}</div>
-            <div className={`summary-circle ${summarySectionClassNamePrefix[index]}-summary-circle`}>
+            <Link
+              to='/details'
+              onClick={() => updateCurrentFieldName(data.fieldName)}
+              className={`summary-circle ${summarySectionClassNamePrefix[index]}-summary-circle`}
+            >
               <span className='summary-count'>{data.count}</span>
-            </div>
+            </Link>
           </div>
         )
       })}

@@ -16,7 +16,7 @@ const FrontMainSection = () => {
     // probably because componentDidUpdate is not being called on this component
     // as it doesn't have states to update it.
     // Doesn't need to have windowHeihgt as internal state and pass it to the second argument as [windowHeight]
-    console.log('checking window height: ', window.innerHeight)
+    // console.log('checking window height: ', window.innerHeight)
     updateSummarySquareHeight(frontMainEl.current)
     updateSummaryCountCircleSize(frontMainEl.current)
     window.addEventListener('resize', () => {

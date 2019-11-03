@@ -1,17 +1,22 @@
-import { initialMtd } from './initialMtd'
 import {
-  IListData,
   ICurrentData,
   IUiData
-} from '../types/models'
+} from '../../../../types/models'
 
-export const initialStateMtd: Array<IListData> = initialMtd
-
-export const initialStateCurrent: ICurrentData = {
+export const stateCurrentAllCategories: ICurrentData = {
   currentListName: 'Personal',
   currentCategoryName: 'All categories',
   currentFieldName: 'To do',
   currentTask: '',
+  currentFieldIndex: 0,
+  taskSortOrder: 'desc'
+}
+
+export const stateCurrentToDoForEdit: ICurrentData = {
+  currentListName: 'Personal',
+  currentCategoryName: 'To do',
+  currentFieldName: 'To do',
+  currentTask: 'Service lawn mower',
   currentFieldIndex: 0,
   taskSortOrder: 'desc'
 }
@@ -31,3 +36,4 @@ export const initialStateUi: IUiData = {
   backgroundDiv: false,
   backgroundDivTop: false
 }
+

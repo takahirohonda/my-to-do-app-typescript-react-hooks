@@ -20,6 +20,11 @@ import { Link } from 'react-router-dom'
 
 const summarySectionClassNamePrefix = ['to-do', 'doing', 'done', 'backlog']
 
+interface IFieldNameIndexMap {
+  fieldName: string
+  index: number
+}
+
 const SummarySection = () => {
   const [currentData, setCurrentData] = useContext<[ICurrentData, React.Dispatch<React.SetStateAction<ICurrentData>>]>(CurrentContext)
   const [appData, setAppData] = useContext<[Array<IListData>, React.Dispatch<React.SetStateAction<Array<IListData>>>]>(DataContext)
@@ -33,9 +38,20 @@ const SummarySection = () => {
     setCurrentData((prevCurrentData: ICurrentData) => {
       return {
         ...prevCurrentData,
-        currentFieldName: fieldName
+        currentFieldName: fieldName,
+        currentFieldIndex: getIndexForFieldName(fieldName)
       }
     })
+  }
+
+  // to get currentFieldIndex
+  const getIndexForFieldName = (fieldName: string)
+  : number => {
+    const map = [] as IFieldNameIndexMap[]
+    (currentCategoryFieldNameAndCount || []).map((data: ICurrentCategoryFieldNameAndCount, index: number) => {
+      map.push({fieldName: data.fieldName, index: index})
+    })
+    return map.filter((map) => map.fieldName === fieldName)[0].index
   }
 
   return (

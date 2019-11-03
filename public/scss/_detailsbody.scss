@@ -2,12 +2,27 @@
   margin: 5px;
 }
 
-.item-inner-container:hover {
- background-color: #ffd9d9;
+.item-inner-container {
+  &:hover {
+    &.todo-item-bg{
+      background-color: $pinkLight;
+    }
+    &.doing-item-bg {
+      background-color: $yellowLight;
+    }
+    &.done-item-bg {
+      background-color: $greenLight;
+    }
+    &.backlog-item-bg{
+      background-color: $blueLight;
+    }
+
+    & hr {
+      display: none;
+    }
+  }
 }
-.item-inner-container:hover hr {
-  display: none;
-}
+
 .item {
   padding: 10px;
   font-family: 'Source Sans Pro', sans-serif;

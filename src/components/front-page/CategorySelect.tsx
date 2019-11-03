@@ -12,8 +12,8 @@ import { getCategoryList } from '../utils/getCategoryList'
 
 
 const CategorySelect = () => {
-  const [ currentData, setCurrentData ] = useContext<[ICurrentData, React.Dispatch<React.SetStateAction<ICurrentData>>]>(CurrentContext)
-  const [ appData, setAppData ] = useContext<[Array<IListData>, React.Dispatch<React.SetStateAction<Array<IListData>>>]>(DataContext)
+  const [ currentData, setCurrentData ] = useContext<[ICurrentData, any]>(CurrentContext)
+  const [ appData, setAppData ] = useContext<[Array<IListData>, any]>(DataContext)
   const categoryList = getCategoryList(currentData, appData)
 
   // update category data from select onChange event
@@ -27,16 +27,19 @@ const CategorySelect = () => {
     })
   }
 
+  // always place all categories to the top of the select list
+  const sortedArray = categoryList.sort((a, b) => {
+    return a.toLowerCase() === 'all categories' ? -1 : 1
+  })
+
   return (
-    <select id='category' className='nav-bar-select' name='category' onChange={updateCategory}>
-      <option value='all'>All categories</option>
-      {categoryList.map((category, index) => {
+    < select id= 'category' className= 'nav-bar-select' name= 'category' value= {currentData.currentCategoryName} onChange= {updateCategory} >
+      {sortedArray.map((category, index) => {
         return (
           <option value={category} key={index}>{category}</option>
         )
-      })
-      }
-    </select>
+      })}
+    </select >
   )
 }
 

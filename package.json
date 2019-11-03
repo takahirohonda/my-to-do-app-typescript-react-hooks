@@ -7,8 +7,10 @@
     "start": "webpack-dev-server --open",
     "devbuild": "webpack --mode development",
     "build": "webpack --mode production",
-    "test": "nyc --reporter=html --reporter=text mocha -r ts-node/register -r jsdom-global/register -r unitTestSetup.ts **/test/**/*.ts test/**/*.ts test/**/*.tsx --recursive --timeout 5000",
-    "test:watch": "nyc --reporter=html --reporter=text mocha -r ts-node/register -r jsdom-global/register -r unitTestSetup.ts **/test/**/*.ts test/**/*.ts test/**/*.tsx --recursive --timeout 5000 --watch"
+    "test": "nyc --reporter=html --reporter=text mocha -r ts-node/register -r jsdom-global/register -r unitTestSetup.ts **/tests/**/*.ts  --recursive --timeout 5000",
+    "test:watch": "mocha -r ts-node/register -r jsdom-global/register -r unitTestSetup.ts **/tests/**/*.ts --recursive --timeout 5000 --watch-extensions ts --watch",
+    "test:watch:debugging": "mocha -r ts-node/register -r jsdom-global/register -r unitTestSetup.ts **/tests/**/*.ts ./src/**/*.tsx --recursive --timeout 5000 --watch-extensions ts --watch"
+
   },
   "keywords": [],
   "author": "",

@@ -16,7 +16,7 @@ export interface IDetails {
 
 export interface ITasks {
   task?: string
-  createdDate?: string
+  createdDate?: Date
 }
 
 // currentData
@@ -24,6 +24,9 @@ export interface ICurrentData {
   currentListName: string
   currentCategoryName: string
   currentFieldName: string
+  currentTask: string
+  currentFieldIndex: number
+  taskSortOrder: string
 }
 
 // uiData
@@ -37,9 +40,10 @@ export interface IUiData {
   detailsPage: boolean
   editTask: boolean
   addTask: boolean
-  sortMenu: boolean
   deleteAllMenu: boolean
   deleteAllConfirm: boolean
+  backgroundDiv: boolean
+  backgroundDivTop: boolean
 }
 
 // Models for UI display transformed data

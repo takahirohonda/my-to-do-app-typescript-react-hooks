@@ -7,8 +7,8 @@
 .details-header-top-container {
   display: flex;
   justify-content: space-between;
-  background-color: #F78888;
 }
+
 .details-header-section-container {
   display: flex;
   align-items: center;
@@ -42,7 +42,6 @@
   width: 55px;
   height: 55px;
   border-radius: 50%;
-  background-color: #F78888;
   position: absolute;
   right: 15px;
   bottom: 15px;
@@ -55,7 +54,6 @@
 }
 
 .details-right-nav-menu {
-  background-color: #F78888;
   color: white;
   position: absolute;
   top: 1px;
@@ -106,20 +104,4 @@
 
 .sort-right-nav-ul {
   list-style-type: none;
-}
-
-.nav-menu-background.active {
-  display: block;
-  align-items: center;
-  justify-content: center;
-  background-color: #020202a1;
-  opacity: 10%;
-  position: fixed;
-  z-index: 5;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;  
 }

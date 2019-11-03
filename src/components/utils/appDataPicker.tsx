@@ -40,3 +40,18 @@ export const getCurrentFieldTaskList = (currentDetails: Array<IDetails>, current
   .filter((detail: IDetails) => detail.fieldName.toLowerCase() === currentFieldName.toLowerCase())[0]
   .tasks
 }
+
+// Sort task list by createdData
+export const sortTaskByCreatedDate = (taskList: Array<ITasks>, currentSortOrder: string) => {
+  if (currentSortOrder.toLowerCase() === 'desc') {
+    return taskList.sort((a: ITasks, b: ITasks): number => {
+      return a.createdDate < b.createdDate ? 1 : -1
+    })
+  }
+  else if (currentSortOrder.toLowerCase() === 'asc') {
+    return taskList.sort((a: ITasks, b: ITasks): number => {
+      return a.createdDate > b.createdDate ? 1 : -1
+    })
+  }
+}
+

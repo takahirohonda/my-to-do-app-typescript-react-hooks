@@ -36,7 +36,7 @@ const AddTaskForm = () => {
 
   return (
     <div className={`add-task-container ${uiData.addTask ? 'active' : ''}`}>
-      <header className={`edit-task-header ${headerBgClass[currentData.currentFieldIndex]}`}>
+      <header className={`edit-task-header ${headerBgClass[currentData.currentStatusIndex]}`}>
         <div className='edit-task-header-top'>
           <span onClick={uiClickHandler}>
             <LeftArrowIcon />
@@ -55,7 +55,7 @@ const AddTaskForm = () => {
             ref={inputEl} />
         </div>
         <div
-          className={`task-input-save-tick ${tickBgClass[currentData.currentFieldIndex]}`}
+          className={`task-input-save-tick ${tickBgClass[currentData.currentStatusIndex]}`}
           onClick={uiClickHandler}>
           &#x2713;
         </div>

@@ -45,13 +45,13 @@ const DeleteAllConfirmForm = () => {
         <div className='form-button-container'>
           <button
             type='button'
-            className={`submit-button ${btnColorClass[currentData.currentFieldIndex]} delete-all-confirm-btn`}
+            className={`submit-button ${btnColorClass[currentData.currentStatusIndex]} delete-all-confirm-btn`}
             onClick={onClickConfirm}>
             Confirm
           </button>
           <button
             type='button'
-            className={`cancel-button ${btnColorClass[currentData.currentFieldIndex]} delete-all-cancel-btn`}
+            className={`cancel-button ${btnColorClass[currentData.currentStatusIndex]} delete-all-cancel-btn`}
             onClick={onClickCancel}>
             Cancel
             </button>

@@ -1,31 +1,36 @@
 // appData
-export interface IListData {
+export interface IList {
   listName: string
-  listDetails: IListDetails[]
 }
 
-export interface IListDetails {
+export interface ICategory {
   categoryName: string
-  details: IDetails[]
+  listName: string
 }
 
-export interface IDetails {
-  fieldName: string
-  tasks?: ITasks[]
+export interface IStatus {
+  status: string
+  statusId: number
+  categoryName: string
+  listName: string
 }
 
-export interface ITasks {
-  task?: string
-  createdDate?: Date
+export interface ITask {
+  task: string
+  createdDate: Date
+  statusId: number
+  status: string
+  listName: string
+  categoryName: string
 }
 
 // currentData
 export interface ICurrentData {
   currentListName: string
   currentCategoryName: string
-  currentFieldName: string
+  currentStatus: string
   currentTask: string
-  currentFieldIndex: number
+  currentStatusIndex: number
   taskSortOrder: string
 }
 

@@ -8,33 +8,25 @@ import DetailsTaskList from './DetailsTaskList'
 import { useContext } from 'react'
 import {
   CurrentContext,
-  DataContext,
+  TaskContext,
   UiContext
 } from '../../AppContext'
 
 import {
-  IListData,
+  ITask,
   ICurrentData,
   IUiData
 } from '../../types/models'
 
-import {
-  getCurrentListDetails,
-  getCurrentCategoryDetails,
-  getCurrentFieldTaskList,
-  sortTaskByCreatedDate
-} from '../utils/appDataPicker'
-
 const headerBgClass = ['to-do-bg', 'doing-bg', 'done-bg', 'backlog-bg']
 
 const DetailsMain = () => {
-  const [currentData, setCurrentData] = useContext<[ICurrentData, React.Dispatch<React.SetStateAction<ICurrentData>>]>(CurrentContext)
-  const [appData, setAppData] = useContext<[Array<IListData>, React.Dispatch<React.SetStateAction<Array<IListData>>>]>(DataContext)
+  const [currentData, setCurrentData] = useContext<[ICurrentData, any]>(CurrentContext)
+  const [taskData, setTaskData] = useContext<[ITask[], any]>(TaskContext)
   const [uiData, setUiData] = useContext<[IUiData, any]>(UiContext)
-  const currentListDetails = getCurrentListDetails(appData, currentData.currentListName)
-  const currentCategoryDetails = getCurrentCategoryDetails(currentListDetails, currentData.currentCategoryName)
-  const currentFieldTaskList = getCurrentFieldTaskList(currentCategoryDetails, currentData.currentFieldName)
-  const sortedTaskList = sortTaskByCreatedDate(currentFieldTaskList, currentData.taskSortOrder)
+
+  const currentTasks = getCurrentTasks(taskData, currentData)
+  const sortedTaskList = sortTaskByCreatedDate(currentTasks, currentData.taskSortOrder)
 
   // update sort order by clicking
   const updateSortOrder = () => {
@@ -58,18 +50,15 @@ const DetailsMain = () => {
     })
   }
 
-  // const headerBg = () => {
-
-  // }
 
   return (
     <React.Fragment>
       <div className='detail-task-container'>
-        <div className={`details-header-top-container ${headerBgClass[currentData.currentFieldIndex]}`}>
+        <div className={`details-header-top-container ${headerBgClass[currentData.currentStatusIndex]}`}>
           <div className='details-header-section-container'>
             <Link to='/'><LeftArrowIcon /></Link>
             <span className='details-header-title'>
-              {currentData.currentFieldName} ({(sortedTaskList || []).length})
+              {currentData.currentStatus} ({(sortedTaskList || []).length})
               </span>
           </div>
           <div className='details-header-section-container'>
@@ -89,3 +78,30 @@ const DetailsMain = () => {
 }
 
 export default DetailsMain
+
+const getCurrentTasks = (tasks: ITask[], currentData: ICurrentData) => {
+
+  if (currentData.currentCategoryName.toLowerCase() === 'all categories') {
+    return tasks
+      .filter((task) => task.listName === currentData.currentListName
+      && task.status === currentData.currentStatus)
+  } else  {
+    return tasks
+      .filter((task) => task.listName === currentData.currentListName
+      && task.categoryName === currentData.currentCategoryName
+      && task.status === currentData.currentStatus)
+  }
+}
+
+const sortTaskByCreatedDate = (tasks: ITask[], currentSortOrder: string) => {
+  if (currentSortOrder.toLowerCase() === 'desc') {
+    return tasks.sort((a: ITask, b: ITask): number => {
+      return a.createdDate < b.createdDate ? 1 : -1
+    })
+  }
+  else if (currentSortOrder.toLowerCase() === 'asc') {
+    return tasks.sort((a: ITask, b: ITask): number => {
+      return a.createdDate > b.createdDate ? 1 : -1
+    })
+  }
+}

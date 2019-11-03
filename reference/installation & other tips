@@ -1,0 +1,29 @@
+########################
+### Installation #######
+########################
+
+# (1) React
+
+npm i react react-dom typescript @types/react @types/react-dom 
+
+# (2) React testing library
+
+npm i --save-dev @testing-library/react
+
+# (3) Fixing error - Error: Chunk.entrypoints: Use Chunks.groupsIterable and filter by instanceof Entrypoint instead
+
+Uninstalled extract-text-webpack-plugin and installed next
+
+npm uninstall extract-text-webpack-plugin
+npm i --save-dev extract-text-webpack-plugin@next
+
+# (4) React router
+
+npm i react-router-dom @types/history @types/react-router-dom
+
+########################
+### Tips ###############
+########################
+typing useContext - type tuple, second type is React.Dispatch
+const [currentData, setCurrentData] = useContext<[ICurrentData, React.Dispatch<React.SetStateAction<ICurrentData>>]>(CurrentContext)
+  const [appData, setAppData] = useContext<[Array<IListData>, React.Dispatch<React.SetStateAction<Array<IListData>>>]>(DataContext)

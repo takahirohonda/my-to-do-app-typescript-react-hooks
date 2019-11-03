@@ -22,7 +22,7 @@ const AddIcon = () => {
     })
   }
   return (
-    <div className={`add-icon ${headerBgClass[currentData.currentFieldIndex]}`} onClick={clickHandler}>
+    <div className={`add-icon ${headerBgClass[currentData.currentStatusIndex]}`} onClick={clickHandler}>
       <span className='plus-sign'>+</span>
     </div>
   )

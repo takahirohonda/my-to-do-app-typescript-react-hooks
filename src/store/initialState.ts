@@ -1,18 +1,14 @@
-import { initialMtd } from './initialMtd'
 import {
-  IListData,
   ICurrentData,
   IUiData
 } from '../types/models'
 
-export const initialStateMtd: Array<IListData> = initialMtd
-
 export const initialStateCurrent: ICurrentData = {
   currentListName: 'Personal',
   currentCategoryName: 'All categories',
-  currentFieldName: 'To do',
+  currentStatus: 'To do',
   currentTask: '',
-  currentFieldIndex: 0,
+  currentStatusIndex: 0,
   taskSortOrder: 'desc'
 }
 

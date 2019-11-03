@@ -1,20 +1,18 @@
 import * as React from 'react'
 import { useContext } from 'react'
-import { ITasks } from '../../types/models'
+import { ITask } from '../../types/models'
 import {
   CurrentContext,
-  DataContext,
   UiContext
 } from '../../AppContext'
 
 import {
-  IListData,
   ICurrentData,
   IUiData
 } from '../../types/models'
 
 export interface IDetailsTaskListProps {
-  currentFieldTaskList: ITasks[]
+  currentFieldTaskList: ITask[]
 }
 
 const headerBgClass = ['todo-item-bg', 'doing-item-bg', 'done-item-bg', 'backlog-item-bg']
@@ -28,7 +26,7 @@ const DetailsTaskList = ({currentFieldTaskList}: IDetailsTaskListProps) => {
       return { ...prevUiData, editTask: true }
     })
     setCurrentData((prevCurrentData: ICurrentData) => {
-      return { ...currentData, currentTask: task }
+      return { ...prevCurrentData, currentTask: task }
     })
   }
   return (
@@ -37,7 +35,7 @@ const DetailsTaskList = ({currentFieldTaskList}: IDetailsTaskListProps) => {
         return (
           <div className='item-outer-container' key={index}>
             <div
-              className={`item-inner-container ${headerBgClass[currentData.currentFieldIndex]}`}
+              className={`item-inner-container ${headerBgClass[currentData.currentStatusIndex]}`}
               onClick={() => clickHandler(task.task)}>
               <p className='item'>
                 {index + 1}. {task.task}

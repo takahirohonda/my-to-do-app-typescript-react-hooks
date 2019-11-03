@@ -31,8 +31,8 @@ const SummarySection = () => {
     setCurrentData((prevCurrentData: ICurrentData) => {
       return {
         ...prevCurrentData,
-        currentFieldName: fieldName,
-        currentFieldIndex: statusId
+        currentStatus: fieldName,
+        currentStatusIndex: statusId
       }
     })
   }
@@ -48,7 +48,7 @@ const SummarySection = () => {
               onClick={() => updateCurrentFieldName(data.status, data.statusId)}
               className={`summary-circle ${summarySectionClassNamePrefix[index]}-summary-circle`}
             >
-              <span className='summary-count'>{getTaskCountForStatus(taskData, currentData, data.status)}</span>
+              <span className='summary-count'>{getTaskCountForStatus(taskData, currentData, data.statusId)}</span>
             </Link>
           </div>
         )

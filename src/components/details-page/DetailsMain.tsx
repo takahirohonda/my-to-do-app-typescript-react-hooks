@@ -26,8 +26,9 @@ const DetailsMain = () => {
   const [uiData, setUiData] = useContext<[IUiData, any]>(UiContext)
 
   const currentTasks = getCurrentTasks(taskData, currentData)
-  const sortedTaskList = sortTaskByCreatedDate(currentTasks, currentData.taskSortOrder)
-
+  const sortedTasks = sortTaskByCreatedDate(currentTasks, currentData.taskSortOrder)
+  console.log('check sort order', currentData.taskSortOrder)
+  console.log('check array', sortedTasks)
   // update sort order by clicking
   const updateSortOrder = () => {
     setCurrentData((prevCurrentData: ICurrentData) => {
@@ -58,7 +59,7 @@ const DetailsMain = () => {
           <div className='details-header-section-container'>
             <Link to='/'><LeftArrowIcon /></Link>
             <span className='details-header-title'>
-              {currentData.currentStatus} ({(sortedTaskList || []).length})
+              {currentData.currentStatus} ({(sortedTasks || []).length})
               </span>
           </div>
           <div className='details-header-section-container'>
@@ -70,7 +71,7 @@ const DetailsMain = () => {
             </span>
           </div>
         </div>
-        <DetailsTaskList currentFieldTaskList={sortedTaskList} />
+        <DetailsTaskList currentFieldTaskList={sortedTasks} />
       </div>
       <AddIcon />
     </React.Fragment>
@@ -84,12 +85,12 @@ const getCurrentTasks = (tasks: ITask[], currentData: ICurrentData) => {
   if (currentData.currentCategoryName.toLowerCase() === 'all categories') {
     return tasks
       .filter((task) => task.listName === currentData.currentListName
-      && task.status === currentData.currentStatus)
+      && task.statusId === currentData.currentStatusIndex)
   } else  {
     return tasks
       .filter((task) => task.listName === currentData.currentListName
       && task.categoryName === currentData.currentCategoryName
-      && task.status === currentData.currentStatus)
+      && task.statusId === currentData.currentStatusIndex)
   }
 }
 

@@ -4,20 +4,27 @@ import LeftArrowIcon from '../svg/LeftArrowIcon'
 import TrashIcon from '../svg/TrashIcon'
 import {
   UiContext,
-  CurrentContext
+  CurrentContext,
+  TaskContext,
+  StatusContext
 } from '../../AppContext'
 import {
   IUiData,
-  ICurrentData
+  ICurrentData,
+  ITask,
+  IStatus
 } from '../../types/models'
+import { addTaskData } from '../utils/helpers'
 
 const headerBgClass = ['to-do-bg', 'doing-bg', 'done-bg', 'backlog-bg']
 const tickBgClass = ['to-do-bg-dark', 'doing-bg-dark', 'done-bg-dark', 'backlog-bg-dark']
 
 const AddTaskForm = () => {
-  const [uiData, setUiData] = useContext<[IUiData, any]>(UiContext)
-  const [currentData, setCurrentData] = useContext<[ICurrentData, any]>(CurrentContext)
-  const [ task, setTask ] = useState<string>('')
+  const [ uiData, setUiData ] = useContext<[IUiData, any]>(UiContext)
+  const [ currentData, setCurrentData ] = useContext<[ICurrentData, any]>(CurrentContext)
+  const [ taskData, setTaskData ] = useContext<[ITask[], any]>(TaskContext)
+  const [statusData, setStatusData] = useContext<[IStatus[], any]>(StatusContext)
+  const [ taskLocal, setTaskLocal ] = useState<string>('')
   const inputEl = useRef(null)
 
   const uiClickHandler = () => {
@@ -26,8 +33,28 @@ const AddTaskForm = () => {
     })
   }
 
+  const trashClickHandler = () => {
+    setTaskLocal('')
+    setUiData((prevUiData: IUiData) => {
+      return { ...prevUiData, addTask: false }
+    })
+  }
+
+  const saveHandler = () => {
+    if (taskLocal.length) {
+      setTaskData((prevTaskData: ITask[]) => {
+        const newTask = addTaskData(currentData, taskLocal)
+        return [ ...prevTaskData, newTask]
+      })
+    }
+
+    setUiData((prevUiData: IUiData) => {
+      return { ...prevUiData, addTask: false }
+    })
+  }
+
   const inputChangeHandler = (e: React.FormEvent<HTMLInputElement>) => {
-    setTask((e.target as HTMLInputElement).value)
+    setTaskLocal((e.target as HTMLInputElement).value)
   }
 
   useEffect(() => {
@@ -41,7 +68,7 @@ const AddTaskForm = () => {
           <span onClick={uiClickHandler}>
             <LeftArrowIcon />
           </span>
-          <span onClick={uiClickHandler}>
+          <span onClick={trashClickHandler}>
             <TrashIcon />
           </span>
         </div>
@@ -50,13 +77,13 @@ const AddTaskForm = () => {
             type='text'
             className='task-input-field'
             placeholder='Add task here...'
-            value={task}
+            value={taskLocal}
             onChange={inputChangeHandler}
             ref={inputEl} />
         </div>
         <div
           className={`task-input-save-tick ${tickBgClass[currentData.currentStatusIndex]}`}
-          onClick={uiClickHandler}>
+          onClick={saveHandler}>
           &#x2713;
         </div>
       </header>

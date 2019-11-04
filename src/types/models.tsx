@@ -36,7 +36,7 @@ export interface ICurrentData {
 
 // uiData
 export interface IUiData {
-  listMenu: boolean
+  listFlyout: boolean
   addList: boolean
   deleteListConfirm: boolean
   addCategoryMenu: boolean

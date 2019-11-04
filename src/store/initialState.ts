@@ -13,7 +13,7 @@ export const initialStateCurrent: ICurrentData = {
 }
 
 export const initialStateUi: IUiData = {
-  listMenu: false,
+  listFlyout: false,
   addList: false,
   deleteListConfirm: false,
   addCategoryMenu: false,

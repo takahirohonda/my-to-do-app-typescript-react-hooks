@@ -14,7 +14,11 @@ import {
   ITask,
   IStatus
 } from '../../types/models'
-import { getCurrentStatusArray } from '../utils/helpers'
+import {
+  getCurrentStatusArray,
+  updateTaskData,
+  getRemainingTaskExceptCurrent
+ } from '../utils/helpers'
 
 
 const headerBgClass = ['to-do-bg', 'doing-bg', 'done-bg', 'backlog-bg']
@@ -28,8 +32,8 @@ const EditTaskForm = () => {
   const [statusData, setStatusData] = useContext<[IStatus[], any]>(StatusContext)
   // local state - need initial value as empty string to prevent error:
   // component is changing an uncontrolled input of type text to be controlled
-  const [ task, setTask ] = useState<string>('')
-  const [ selectedField, setSelectedField ] = useState<string>('')
+  const [ taskLocal, setTaskLocal ] = useState<string>('')
+  const [ selectedStatus, setSelectedStatus ] = useState<string>('')
   // ref
   const inputEl = useRef(null)
 
@@ -41,7 +45,22 @@ const EditTaskForm = () => {
     })
   }
 
+  const trashClickHandler = () => {
+    setTaskData((prevTaskData: ITask[]) => {
+      return getRemainingTaskExceptCurrent(taskData, currentData)
+    })
+
+    setUiData((prevUiData: IUiData) => {
+      return { ...prevUiData, editTask: false }
+    })
+  }
+
   const taskEditSubmitHandler = () => {
+    if (taskLocal.length) {
+      setTaskData((prevTaskData: ITask) => {
+        return updateTaskData(taskData, currentData, statusData, taskLocal, selectedStatus)
+      })
+    }
 
     setUiData((prevUiData: IUiData) => {
       return { ...prevUiData, editTask: false }
@@ -49,17 +68,17 @@ const EditTaskForm = () => {
   }
 
   const radioChangeHandler = (e: React.FormEvent<HTMLInputElement>) => {
-    setSelectedField((e.target as HTMLInputElement).value)
+    setSelectedStatus((e.target as HTMLInputElement).value)
   }
 
   const inputChangeHandler = (e: React.FormEvent<HTMLInputElement>) => {
-    setTask((e.target as HTMLInputElement).value)
+    setTaskLocal((e.target as HTMLInputElement).value)
   }
 
 
   useEffect(() => {
-    setTask(currentData.currentTask)
-    setSelectedField(currentData.currentStatus)
+    setTaskLocal(currentData.currentTask)
+    setSelectedStatus(currentData.currentStatus)
     inputEl.current.focus()
   }, [currentData])
 
@@ -70,7 +89,7 @@ const EditTaskForm = () => {
           <span onClick={uiClickHandler}>
             <LeftArrowIcon />
           </span>
-          <span onClick={uiClickHandler}>
+          <span onClick={trashClickHandler}>
             <TrashIcon />
           </span>
         </div>
@@ -78,7 +97,7 @@ const EditTaskForm = () => {
           <input
             type='text'
             className='task-input-field'
-            value={task}
+            value={taskLocal}
             onChange={inputChangeHandler}
             ref={inputEl} />
         </div>
@@ -101,7 +120,7 @@ const EditTaskForm = () => {
                 name='status-group'
                 value={data.status}
                 onChange={radioChangeHandler}
-                checked={data.status === selectedField} />
+                checked={data.status === selectedStatus} />
           <label className='radio-label' htmlFor={formattedFieldName}>
             <span className='ph-tick'></span>
             {data.status}

@@ -18,6 +18,11 @@ import {
   IUiData
 } from '../../types/models'
 
+import {
+  getCurrentTasks,
+  sortTaskByCreatedDate
+} from '../utils/helpers'
+
 const headerBgClass = ['to-do-bg', 'doing-bg', 'done-bg', 'backlog-bg']
 
 const DetailsMain = () => {
@@ -79,30 +84,3 @@ const DetailsMain = () => {
 }
 
 export default DetailsMain
-
-const getCurrentTasks = (tasks: ITask[], currentData: ICurrentData) => {
-
-  if (currentData.currentCategoryName.toLowerCase() === 'all categories') {
-    return tasks
-      .filter((task) => task.listName === currentData.currentListName
-      && task.statusId === currentData.currentStatusIndex)
-  } else  {
-    return tasks
-      .filter((task) => task.listName === currentData.currentListName
-      && task.categoryName === currentData.currentCategoryName
-      && task.statusId === currentData.currentStatusIndex)
-  }
-}
-
-const sortTaskByCreatedDate = (tasks: ITask[], currentSortOrder: string) => {
-  if (currentSortOrder.toLowerCase() === 'desc') {
-    return tasks.sort((a: ITask, b: ITask): number => {
-      return a.createdDate < b.createdDate ? 1 : -1
-    })
-  }
-  else if (currentSortOrder.toLowerCase() === 'asc') {
-    return tasks.sort((a: ITask, b: ITask): number => {
-      return a.createdDate > b.createdDate ? 1 : -1
-    })
-  }
-}

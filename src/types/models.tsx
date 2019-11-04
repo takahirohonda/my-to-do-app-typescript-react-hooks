@@ -56,3 +56,12 @@ export interface ICurrentCategoryFieldNameAndCount {
   fieldName: string
   count: number
 }
+
+// for form eventhandler
+export interface INewCategoryData {
+  category: string
+  toDoStatus: string
+  doingStatus: string
+  doneStatus: string
+  backlogStatus: string
+}

@@ -20,7 +20,8 @@ const Background = () => {
         deleteAllConfirm: false,
         backgroundDiv: false,
         listFlyout: false,
-        addCategoryMenu: false
+        addCategoryMenu: false,
+        addCategory: false
       }
     })
   }

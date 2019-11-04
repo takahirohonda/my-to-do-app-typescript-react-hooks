@@ -15,6 +15,7 @@ import {
   IUiData
 } from '../../types/models'
 import DeleteCategoryForm from '../forms/DeleteCategoryForm'
+import AddCategoryForm from '../forms/AddCategoryForm'
 
 const CategoryEditMenu = () => {
 
@@ -52,7 +53,7 @@ const CategoryEditMenu = () => {
         addCategoryMenu: false,
         deleteCategory: false,
         backgroundDiv: false,
-        backgroundDivTop: false
+        addCategory: false
       }
     })
   }
@@ -62,22 +63,22 @@ const CategoryEditMenu = () => {
     setCategoryData((prevCategoryData: ICategory[]): ICategory[] => {
       return categoryData
         .filter((category: ICategory) => category.listName.toLowerCase() !== currentData.currentListName.toLowerCase()
-        || (category.listName.toLowerCase() === currentData.currentListName.toLowerCase()
-        && !categoryList.includes(category.categoryName)))
+          || (category.listName.toLowerCase() === currentData.currentListName.toLowerCase()
+            && !categoryList.includes(category.categoryName)))
     })
 
     setStatusData((prevStatusData: IStatus[]): IStatus[] => {
       return prevStatusData
         .filter((status: IStatus) => status.listName.toLowerCase() !== currentData.currentListName.toLowerCase()
-        || (status.listName.toLowerCase() === currentData.currentListName.toLowerCase()
-        && !categoryList.includes(status.categoryName)))
+          || (status.listName.toLowerCase() === currentData.currentListName.toLowerCase()
+            && !categoryList.includes(status.categoryName)))
     })
 
     setTaskData((prevTaskData: ITask[]): ITask[] => {
       return prevTaskData
         .filter((task: ITask) => task.listName.toLowerCase() !== currentData.currentListName.toLowerCase()
-        || (task.listName.toLowerCase() === currentData.currentListName.toLowerCase()
-        && !categoryList.includes(task.categoryName)))
+          || (task.listName.toLowerCase() === currentData.currentListName.toLowerCase()
+            && !categoryList.includes(task.categoryName)))
     })
 
     setUiData((prevUiData: IUiData): IUiData => {
@@ -85,27 +86,64 @@ const CategoryEditMenu = () => {
         ...prevUiData,
         addCategoryMenu: false,
         deleteCategory: false,
+        backgroundDiv: false
+      }
+    })
+  }
+
+  const addCategoryFormSubmitHandler = (newCategory: any) => {
+
+    setCategoryData((prevCategoryData: ICategory[]): ICategory[] => {
+      const categoryToAppend = { categoryName: newCategory.category, listName: currentData.currentListName }
+      return [...prevCategoryData, categoryToAppend]
+    })
+
+    setStatusData((prevStatusData: IStatus[]): IStatus[] => {
+      const statusToAppend: IStatus[] = []
+      const statusKeyList = ['toDoStatus', 'doingStatus', 'doneStatus', 'backlogStatus']
+      statusKeyList.forEach((statusKey: string, index: number) => {
+        statusToAppend.push({
+          status: newCategory[statusKey],
+          statusId: index,
+          categoryName: newCategory.category,
+          listName: currentData.currentListName
+
+        })
+      })
+
+      console.log('checking statusToAppend', statusToAppend)
+
+      return [...prevStatusData, ...statusToAppend]
+    })
+    setUiData((prevUiData: IUiData): IUiData => {
+      return {
+        ...prevUiData,
         backgroundDiv: false,
-        backgroundDivTop: false
+        addCategory: false
       }
     })
   }
 
   return (
     <>
+      <AddCategoryForm
+        active={uiData.addCategory}
+        submitHandler={addCategoryFormSubmitHandler}
+        cancelHandler={cancelHandler}
+      />
       <DeleteCategoryForm
         active={uiData.deleteCategory}
         submitHandler={deleteCategoryFormSubmitHandler}
         cancelHandler={cancelHandler}
-        categoryList={categoryData.filter((data) => data.listName === currentData.currentListName)}/>
-          <div className={`right-nav-menu ${uiData.addCategoryMenu ? 'active' : ''}`}>
-            <ul className='right-nav-ul'>
-              <li className='right-nav-ls' onClick={addCategoryLinkHandler}>Add Category</li>
-              <li className='right-nav-ls' onClick={deleteCategoryLinkHandler}>Delete Category</li>
-            </ul>
-          </div>
+        categoryList={categoryData.filter((data) => data.listName === currentData.currentListName)} />
+      <div className={`right-nav-menu ${uiData.addCategoryMenu ? 'active' : ''}`}>
+        <ul className='right-nav-ul'>
+          <li className='right-nav-ls' onClick={addCategoryLinkHandler}>Add Category</li>
+          <li className='right-nav-ls' onClick={deleteCategoryLinkHandler}>Delete Category</li>
+        </ul>
+      </div>
     </>
-    )
-  }
+  )
+}
 
-  export default CategoryEditMenu
+export default CategoryEditMenu

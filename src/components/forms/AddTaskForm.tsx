@@ -46,6 +46,7 @@ const AddTaskForm = () => {
         const newTask = addTaskData(currentData, taskLocal)
         return [ ...prevTaskData, newTask]
       })
+      setTaskLocal('')
     }
 
     setUiData((prevUiData: IUiData) => {
@@ -58,8 +59,10 @@ const AddTaskForm = () => {
   }
 
   useEffect(() => {
-    inputEl.current.focus()
-  })
+    if (uiData.addTask) {
+      inputEl.current.focus()
+    }
+  }, [uiData])
 
   return (
     <div className={`add-task-container ${uiData.addTask ? 'active' : ''}`}>

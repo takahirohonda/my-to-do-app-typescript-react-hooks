@@ -25,5 +25,6 @@ export const initialStateUi: IUiData = {
   deleteAllMenu: false,
   deleteAllConfirm: false,
   backgroundDiv: false,
-  backgroundDivTop: false
+  backgroundDivTop: false,
+  allRequired: false
 }

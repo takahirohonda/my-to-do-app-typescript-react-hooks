@@ -15,7 +15,7 @@ import {
   ICurrentData,
   IUiData
 } from './types/models'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   ListContext,
   CategoryContext,
@@ -30,12 +30,31 @@ interface IMovieProviderProps {
 }
 
 const AppProvider = (props: IMovieProviderProps) => {
-  const [listData, setListData] = useState<IList[]>(initialList)
-  const [categoryData, setCategoryData] = useState<ICategory[]>(initialCategories)
-  const [statusData, setStatusData] = useState<IStatus[]>(initialStatus)
-  const [taskData, setTaskData] = useState<ITask[]>(initialTasks)
-  const [currentData, setCurrentData] = useState<ICurrentData>(initialStateCurrent)
-  const [uiData, setUiData] = useState<IUiData>(initialStateUi)
+  const [listData, setListData] = useState<IList[]>(JSON.parse(localStorage.getItem('mtdListData')) || initialList)
+  const [categoryData, setCategoryData] = useState<ICategory[]>(JSON.parse(localStorage.getItem('mtdCategoryData')) || initialCategories)
+  const [statusData, setStatusData] = useState<IStatus[]>(JSON.parse(localStorage.getItem('mtdStatusData')) || initialStatus)
+  const [taskData, setTaskData] = useState<ITask[]>(JSON.parse(localStorage.getItem('mtdTaskData')) || initialTasks)
+  const [currentData, setCurrentData] = useState<ICurrentData>(JSON.parse(localStorage.getItem('mtdCurrentData')) || initialStateCurrent)
+  const [uiData, setUiData] = useState<IUiData>(JSON.parse(localStorage.getItem('mtdUiData')) || initialStateUi)
+
+  useEffect(() => {
+    localStorage.mtdListData = JSON.stringify(listData)
+  }, [listData])
+  useEffect(() => {
+    localStorage.mtdCategoryData = JSON.stringify(categoryData)
+  }, [categoryData])
+  useEffect(() => {
+    localStorage.mtdStatusData = JSON.stringify(statusData)
+  }, [statusData])
+  useEffect(() => {
+    localStorage.mtdTaskData = JSON.stringify(taskData)
+  }, [taskData])
+  useEffect(() => {
+    localStorage.mtdCurrentData = JSON.stringify(currentData)
+  }, [currentData])
+  useEffect(() => {
+    localStorage.mtdUiData = JSON.stringify(uiData)
+  }, [uiData])
 
   return (
     <ListContext.Provider value={[listData, setListData]}>

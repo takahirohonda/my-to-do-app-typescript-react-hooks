@@ -49,6 +49,7 @@ export interface IUiData {
   deleteAllConfirm: boolean
   backgroundDiv: boolean
   backgroundDivTop: boolean
+  allRequired: boolean
 }
 
 // Models for UI display transformed data

@@ -17,7 +17,8 @@ const BackgroundTop = () => {
         backgroundDivTop: false,
         backgroundDiv: true,
         addList: false,
-        deleteListConfirm: false
+        deleteListConfirm: false,
+        allRequired: false
       }
     })
   }

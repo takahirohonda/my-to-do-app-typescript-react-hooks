@@ -1,5 +1,7 @@
 import * as React from 'react'
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, useContext } from 'react'
+import { UiContext } from '../../AppContext'
+import { IUiData } from '../../types/models'
 
 interface IAddListFormProps {
   submitHandler: (listName: string) => void
@@ -10,6 +12,7 @@ interface IAddListFormProps {
 const AddListForm = ({submitHandler, cancelHandler, active}: IAddListFormProps) => {
 
   const [ listLocal, setListLocal ] = useState<string>('')
+  const [uiData, setUiData] = useContext<[IUiData, any]>(UiContext)
   const inputEl = useRef(null)
 
   const inputChangeHandler = (e: React.FormEvent<HTMLInputElement>) => {
@@ -17,8 +20,10 @@ const AddListForm = ({submitHandler, cancelHandler, active}: IAddListFormProps) 
   }
 
   useEffect(() => {
-    inputEl.current.focus()
-  })
+    if (active) {
+      inputEl.current.focus()
+    }
+  }, [uiData])
 
   const onSubmitHandler = () => {
     if (listLocal.length) {

@@ -43,12 +43,12 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/my-to-do-app/index.html",
+  "start_url": "/mtd/index.html",
   "scope": ".",
   "display": "standalone",
-  "orientation": "any",
+  "orientation": "portrait",
   "background_color": "#fff",
-  "theme_color": "#e73000",
+  "theme_color": "#131313",
   "description": "Organise your life with to do list",
   "dir": "ltr",
   "lang": "en-US"

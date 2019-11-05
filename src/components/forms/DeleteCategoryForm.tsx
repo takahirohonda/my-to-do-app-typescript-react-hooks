@@ -51,13 +51,13 @@ const DeleteCategoryForm = ({
                 </label>
               </div>
             })
-          : <div>No category to delete</div>}
+          : <div className='no-category-msg-container'><p>No category to delete</p></div>}
 
         <div className='form-button-container'>
           <button
             type='button'
             className='submit-button btn-color-doing'
-            onClick={() => submitHandler(checkedCategory)}>
+            onClick={() => submitHandler(checkedCategory)} >
             Delete
           </button>
           <button

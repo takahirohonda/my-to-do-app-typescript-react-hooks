@@ -81,6 +81,19 @@ const CategoryEditMenu = () => {
             && !categoryList.includes(task.categoryName)))
     })
 
+    setCurrentData((prevCurrentData: ICurrentData): ICurrentData => {
+
+      const resetCurrentData = {
+        currentListName: currentData.currentListName,
+        currentCategoryName: 'All categories',
+        currentStatus: 'To do',
+        currentTask: '',
+        currentStatusIndex: 1,
+        taskSortOrder: 'desc'
+      }
+      return { ...prevCurrentData, ...resetCurrentData }
+    })
+
     setUiData((prevUiData: IUiData): IUiData => {
       return {
         ...prevUiData,
@@ -110,8 +123,6 @@ const CategoryEditMenu = () => {
 
         })
       })
-
-      console.log('checking statusToAppend', statusToAppend)
 
       return [...prevStatusData, ...statusToAppend]
     })

@@ -79,7 +79,9 @@ const EditTaskForm = () => {
   useEffect(() => {
     setTaskLocal(currentData.currentTask)
     setSelectedStatus(currentData.currentStatus)
-    inputEl.current.focus()
+    if (uiData.editTask) {
+      inputEl.current.focus()
+    }
   }, [currentData])
 
   return (

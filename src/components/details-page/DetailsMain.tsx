@@ -32,8 +32,7 @@ const DetailsMain = () => {
 
   const currentTasks = getCurrentTasks(taskData, currentData)
   const sortedTasks = sortTaskByCreatedDate(currentTasks, currentData.taskSortOrder)
-  console.log('check sort order', currentData.taskSortOrder)
-  console.log('check array', sortedTasks)
+
   // update sort order by clicking
   const updateSortOrder = () => {
     setCurrentData((prevCurrentData: ICurrentData) => {

@@ -8,7 +8,24 @@ import {
 } from '../../types/models'
 
 const BackgroundTop = () => {
-  return <div className='add-list-form-container-background'></div>
+  const [uiData, setUiData] = useContext<[IUiData, any]>(UiContext)
+
+  const clickHandler = () => {
+    setUiData((prevUiData: IUiData) => {
+      return {
+        ...prevUiData,
+        backgroundDivTop: false,
+        backgroundDiv: true,
+        addList: false,
+        deleteListConfirm: false,
+        allRequired: false
+      }
+    })
+  }
+
+  return <div
+    className={`add-list-form-container-background ${uiData.backgroundDivTop ? 'active' : ''}`}
+    onClick={clickHandler}></div>
 }
 
 export default BackgroundTop

@@ -14,7 +14,7 @@
   content: "";
   width: 20px;
   height: 20px;
-  border: 1px solid $darkFormbg;
+  border: 1px solid $white;
   opacity: 0.8;
   margin-right: 15px;
   position: absolute;
@@ -55,6 +55,7 @@ input[type=radio] {
 .checkbox-group {
   display: inline-block;
   margin: 15px 30px;
+  width: 30%;
 }
 
 .checkbox-group:focus {

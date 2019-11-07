@@ -5,24 +5,21 @@ import TrashIcon from '../svg/TrashIcon'
 import {
   UiContext,
   CurrentContext,
-  DataContext
+  TaskContext,
+  StatusContext
 } from '../../AppContext'
 import {
   IUiData,
-  IListData,
   ICurrentData,
-  ICurrentCategoryFieldNameAndCount
+  ITask,
+  IStatus
 } from '../../types/models'
-import  {
-  getCurrentCategoryFieldNameAndCount,
-  getCurrentCategoryDetails,
-  getCurrentListDetails
-} from '../utils/appDataPicker'
-
 import {
-  deleteAndUpdateCurrentTask,
-  getCurrentTask
-} from '../utils/updateTaskList'
+  getCurrentStatusArray,
+  updateTaskData,
+  getRemainingTaskExceptCurrent
+ } from '../utils/helpers'
+
 
 const headerBgClass = ['to-do-bg', 'doing-bg', 'done-bg', 'backlog-bg']
 const tickBgclass = ['to-do-bg-dark', 'doing-bg-dark', 'done-bg-dark', 'backlog-bg-dark']
@@ -31,19 +28,16 @@ const EditTaskForm = () => {
   // context
   const [ uiData, setUiData ] = useContext<[IUiData, any]>(UiContext)
   const [ currentData, setCurrentData ] = useContext<[ICurrentData, any]>(CurrentContext)
-  const [ appData, setAppData ] = useContext<[IListData[], any]>(DataContext)
+  const [ taskData, setTaskData ] = useContext<[ITask[], any]>(TaskContext)
+  const [statusData, setStatusData] = useContext<[IStatus[], any]>(StatusContext)
   // local state - need initial value as empty string to prevent error:
   // component is changing an uncontrolled input of type text to be controlled
-  const [ task, setTask ] = useState<string>('')
-  const [ selectedField, setSelectedField ] = useState<string>('')
+  const [ taskLocal, setTaskLocal ] = useState<string>('')
+  const [ selectedStatus, setSelectedStatus ] = useState<string>('')
   // ref
   const inputEl = useRef(null)
 
-  const currentCategoryFieldNameAndCount: Array<ICurrentCategoryFieldNameAndCount>
-    = getCurrentCategoryFieldNameAndCount(
-      getCurrentCategoryDetails(
-        getCurrentListDetails(appData, currentData.currentListName), currentData.currentCategoryName
-      ))
+  const currentStatusArray: IStatus[] = getCurrentStatusArray(statusData, currentData)
 
   const uiClickHandler = () => {
     setUiData((prevUiData: IUiData) => {
@@ -51,12 +45,9 @@ const EditTaskForm = () => {
     })
   }
 
-  const taskEditSubmitHandler = () => {
-
-    setAppData((prevAppData: IListData[]) => {
-      const currentTask = getCurrentTask(appData, currentData)
-      const newData = deleteAndUpdateCurrentTask(appData, currentData, currentTask, selectedField)
-      return { ...prevAppData, newData }
+  const trashClickHandler = () => {
+    setTaskData((prevTaskData: ITask[]) => {
+      return getRemainingTaskExceptCurrent(taskData, currentData)
     })
 
     setUiData((prevUiData: IUiData) => {
@@ -64,29 +55,43 @@ const EditTaskForm = () => {
     })
   }
 
+  const taskEditSubmitHandler = () => {
+    if (taskLocal.length) {
+      setTaskData((prevTaskData: ITask) => {
+        return updateTaskData(taskData, currentData, statusData, taskLocal, selectedStatus)
+      })
+    }
+
+    setUiData((prevUiData: IUiData) => {
+      return { ...prevUiData, editTask: false }
+    })
+  }
+
   const radioChangeHandler = (e: React.FormEvent<HTMLInputElement>) => {
-    setSelectedField((e.target as HTMLInputElement).value)
+    setSelectedStatus((e.target as HTMLInputElement).value)
   }
 
   const inputChangeHandler = (e: React.FormEvent<HTMLInputElement>) => {
-    setTask((e.target as HTMLInputElement).value)
+    setTaskLocal((e.target as HTMLInputElement).value)
   }
 
 
   useEffect(() => {
-    setTask(currentData.currentTask)
-    setSelectedField(currentData.currentFieldName)
-    inputEl.current.focus()
+    setTaskLocal(currentData.currentTask)
+    setSelectedStatus(currentData.currentStatus)
+    if (uiData.editTask) {
+      inputEl.current.focus()
+    }
   }, [currentData])
 
   return (
     <div className={`edit-task-container ${uiData.editTask ? 'active' : ''}`}>
-      <header className={`edit-task-header ${headerBgClass[currentData.currentFieldIndex]}`}>
+      <header className={`edit-task-header ${headerBgClass[currentData.currentStatusIndex]}`}>
         <div className='edit-task-header-top'>
           <span onClick={uiClickHandler}>
             <LeftArrowIcon />
           </span>
-          <span onClick={uiClickHandler}>
+          <span onClick={trashClickHandler}>
             <TrashIcon />
           </span>
         </div>
@@ -94,20 +99,20 @@ const EditTaskForm = () => {
           <input
             type='text'
             className='task-input-field'
-            value={task}
+            value={taskLocal}
             onChange={inputChangeHandler}
             ref={inputEl} />
         </div>
         <div
-          className={`task-input-save-tick ${tickBgclass[currentData.currentFieldIndex]}`}
+          className={`task-input-save-tick ${tickBgclass[currentData.currentStatusIndex]}`}
           onClick={taskEditSubmitHandler}>
           &#x2713;
         </div>
       </header>
 
       <div className='radio-button-container' role='radiogroup'>
-        {(currentCategoryFieldNameAndCount || []).map((data: ICurrentCategoryFieldNameAndCount, index: number) => {
-          const formattedFieldName = data.fieldName.replace(' ', '').toLowerCase()
+        {(currentStatusArray || []).map((data: IStatus, index: number) => {
+          const formattedFieldName = data.status.replace(' ', '').toLowerCase()
           return (
             <div className='radio-button-group' tabIndex={0} key={index}>
               <input
@@ -115,12 +120,12 @@ const EditTaskForm = () => {
                 className='radio-input'
                 id={formattedFieldName}
                 name='status-group'
-                value={data.fieldName}
+                value={data.status}
                 onChange={radioChangeHandler}
-                checked={data.fieldName === selectedField} />
+                checked={data.status === selectedStatus} />
           <label className='radio-label' htmlFor={formattedFieldName}>
             <span className='ph-tick'></span>
-            {data.fieldName}
+            {data.status}
           </label>
             </div>
           )

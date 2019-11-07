@@ -18,7 +18,10 @@ const Background = () => {
         ...prevUiData,
         deleteAllMenu: false,
         deleteAllConfirm: false,
-        backgroundDiv: false
+        backgroundDiv: false,
+        listFlyout: false,
+        addCategoryMenu: false,
+        addCategory: false
       }
     })
   }

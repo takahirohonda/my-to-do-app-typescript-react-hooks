@@ -23,7 +23,7 @@ const DeleteAllMenu = () => {
   }
   return (
     <>
-      <div className={`details-right-nav-menu ${uiData.deleteAllMenu ? 'active' : ''} ${headerBgClass[currentData.currentFieldIndex]}`}>
+      <div className={`details-right-nav-menu ${uiData.deleteAllMenu ? 'active' : ''} ${headerBgClass[currentData.currentStatusIndex]}`}>
         <ul className='details-right-nav-ul'>
           <li
             className='details-right-nav-ls details-delete-all-btn'

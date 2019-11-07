@@ -2,19 +2,17 @@ import * as React from 'react'
 import { useContext } from 'react'
 import {
   CurrentContext,
-  DataContext
+  CategoryContext
 } from '../../AppContext'
 import {
-  IListData,
+  ICategory,
   ICurrentData
 } from '../../types/models'
-import { getCategoryList } from '../utils/getCategoryList'
-
 
 const CategorySelect = () => {
-  const [ currentData, setCurrentData ] = useContext<[ICurrentData, any]>(CurrentContext)
-  const [ appData, setAppData ] = useContext<[Array<IListData>, any]>(DataContext)
-  const categoryList = getCategoryList(currentData, appData)
+  const [currentData, setCurrentData] = useContext<[ICurrentData, any]>(CurrentContext)
+  const [categoryData, setCategoryData] = useContext<[ICategory[], any]>(CategoryContext)
+  const categoryList = categoryData.filter((data) => data.listName === currentData.currentListName)
 
   // update category data from select onChange event
   const updateCategory = (e: React.FormEvent<HTMLSelectElement>) => {
@@ -27,16 +25,17 @@ const CategorySelect = () => {
     })
   }
 
-  // always place all categories to the top of the select list
-  const sortedArray = categoryList.sort((a, b) => {
-    return a.toLowerCase() === 'all categories' ? -1 : 1
-  })
-
   return (
-    < select id= 'category' className= 'nav-bar-select' name= 'category' value= {currentData.currentCategoryName} onChange= {updateCategory} >
-      {sortedArray.map((category, index) => {
+    <select
+      id='category'
+      className='nav-bar-select'
+      name='category'
+      value={currentData.currentCategoryName}
+      onChange={updateCategory} >
+      <option value='All categories' >All categories</option>
+      {categoryList.map((category, index) => {
         return (
-          <option value={category} key={index}>{category}</option>
+          <option value={category.categoryName} key={index}>{category.categoryName}</option>
         )
       })}
     </select >

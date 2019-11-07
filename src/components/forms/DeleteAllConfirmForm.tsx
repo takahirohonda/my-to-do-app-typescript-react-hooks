@@ -2,12 +2,16 @@ import * as React from 'react'
 import { useContext } from 'react'
 import {
   UiContext,
-  CurrentContext
+  CurrentContext,
+  TaskContext
 } from '../../AppContext'
 import {
   IUiData,
-  ICurrentData
+  ICurrentData,
+  ITask
 } from '../../types/models'
+
+import { getRemainingTasks } from '../utils/helpers'
 
 
 const btnColorClass = ['btn-color-todo', 'btn-color-doing', 'btn-color-done', 'btn-color-backlog']
@@ -15,8 +19,15 @@ const btnColorClass = ['btn-color-todo', 'btn-color-doing', 'btn-color-done', 'b
 const DeleteAllConfirmForm = () => {
   const [uiData, setUiData] = useContext<[IUiData, any]>(UiContext)
   const [ currentData, setCurrentData ] = useContext<[ICurrentData, any]>(CurrentContext)
+  const [ taskData, setTaskData ] = useContext<[ITask[], any]>(TaskContext)
 
   const onClickConfirm = () => {
+    const remainingTasks = getRemainingTasks(taskData, currentData)
+
+    setTaskData((prevTaskData: ITask[]) => {
+      return remainingTasks
+    })
+
     setUiData((prevUiData: IUiData) => {
       return {
         ...prevUiData,
@@ -45,13 +56,13 @@ const DeleteAllConfirmForm = () => {
         <div className='form-button-container'>
           <button
             type='button'
-            className={`submit-button ${btnColorClass[currentData.currentFieldIndex]} delete-all-confirm-btn`}
+            className={`submit-button ${btnColorClass[currentData.currentStatusIndex]} delete-all-confirm-btn`}
             onClick={onClickConfirm}>
             Confirm
           </button>
           <button
             type='button'
-            className={`cancel-button ${btnColorClass[currentData.currentFieldIndex]} delete-all-cancel-btn`}
+            className={`cancel-button ${btnColorClass[currentData.currentStatusIndex]} delete-all-cancel-btn`}
             onClick={onClickCancel}>
             Cancel
             </button>

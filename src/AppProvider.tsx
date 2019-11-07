@@ -1,17 +1,26 @@
 import * as React from 'react'
+import { initialList } from './store/initialList'
+import { initialCategories } from './store/initialCategories'
+import { initialStatus } from './store/initialStatus'
+import { initialTasks } from './store/initialTasks'
 import {
-  initialStateMtd,
   initialStateCurrent,
   initialStateUi
 } from './store/initialState'
 import {
-  IListData,
+  IList,
+  ICategory,
+  IStatus,
+  ITask,
   ICurrentData,
   IUiData
 } from './types/models'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
-  DataContext,
+  ListContext,
+  CategoryContext,
+  StatusContext,
+  TaskContext,
   CurrentContext,
   UiContext
 } from './AppContext'
@@ -21,18 +30,46 @@ interface IMovieProviderProps {
 }
 
 const AppProvider = (props: IMovieProviderProps) => {
-  const [appData, setAppData] = useState<Array<IListData>>(initialStateMtd)
-  const [currentData, setCurrentData] = useState<ICurrentData>(initialStateCurrent)
-  const [uiData, setUiData] = useState<IUiData>(initialStateUi)
+  const [listData, setListData] = useState<IList[]>(JSON.parse(localStorage.getItem('mtdListData')) || initialList)
+  const [categoryData, setCategoryData] = useState<ICategory[]>(JSON.parse(localStorage.getItem('mtdCategoryData')) || initialCategories)
+  const [statusData, setStatusData] = useState<IStatus[]>(JSON.parse(localStorage.getItem('mtdStatusData')) || initialStatus)
+  const [taskData, setTaskData] = useState<ITask[]>(JSON.parse(localStorage.getItem('mtdTaskData')) || initialTasks)
+  const [currentData, setCurrentData] = useState<ICurrentData>(JSON.parse(localStorage.getItem('mtdCurrentData')) || initialStateCurrent)
+  const [uiData, setUiData] = useState<IUiData>(JSON.parse(localStorage.getItem('mtdUiData')) || initialStateUi)
+
+  useEffect(() => {
+    localStorage.mtdListData = JSON.stringify(listData)
+  }, [listData])
+  useEffect(() => {
+    localStorage.mtdCategoryData = JSON.stringify(categoryData)
+  }, [categoryData])
+  useEffect(() => {
+    localStorage.mtdStatusData = JSON.stringify(statusData)
+  }, [statusData])
+  useEffect(() => {
+    localStorage.mtdTaskData = JSON.stringify(taskData)
+  }, [taskData])
+  useEffect(() => {
+    localStorage.mtdCurrentData = JSON.stringify(currentData)
+  }, [currentData])
+  useEffect(() => {
+    localStorage.mtdUiData = JSON.stringify(uiData)
+  }, [uiData])
 
   return (
-    <DataContext.Provider value={[appData, setAppData]}>
-      <CurrentContext.Provider value={[currentData, setCurrentData]}>
-        <UiContext.Provider value={[uiData, setUiData]}>
-          {props.children}
-        </UiContext.Provider>
-      </CurrentContext.Provider>
-    </DataContext.Provider>
+    <ListContext.Provider value={[listData, setListData]}>
+      <CategoryContext.Provider value={[categoryData, setCategoryData]}>
+        <StatusContext.Provider value={[statusData, setStatusData]}>
+          <TaskContext.Provider value={[taskData, setTaskData]}>
+            <CurrentContext.Provider value={[currentData, setCurrentData]}>
+              <UiContext.Provider value={[uiData, setUiData]}>
+                {props.children}
+              </UiContext.Provider>
+            </CurrentContext.Provider>
+          </TaskContext.Provider>
+        </StatusContext.Provider>
+      </CategoryContext.Provider>
+    </ListContext.Provider>
   )
 }
 

@@ -10,7 +10,7 @@ export const initialTasks: ITask[] = [
     categoryName: 'To Do'
   },
   {
-    task: 'Go shopping',
+    task: 'Pay for my car registration',
     createdDate: new Date('2019-08-07'),
     statusId: 0,
     status: 'To do',
@@ -18,7 +18,7 @@ export const initialTasks: ITask[] = [
     categoryName: 'To Do'
   },
   {
-    task: 'Water the garden',
+    task: 'Fix fly wire screen',
     createdDate: new Date('2020-09-01'),
     statusId: 0,
     status: 'To do',
@@ -26,7 +26,7 @@ export const initialTasks: ITask[] = [
     categoryName: 'To Do'
   },
   {
-    task: 'Walk do',
+    task: 'Plant blueberry trees',
     createdDate: new Date('2020-06-04'),
     statusId: 1,
     status: 'Doing',
@@ -50,7 +50,7 @@ export const initialTasks: ITask[] = [
     categoryName: 'To Do'
   },
   {
-    task: 'React Hooks',
+    task: 'Fly a helicopter',
     createdDate: new Date('1999-01-01'),
     statusId: 0,
     status: 'To do',
@@ -58,7 +58,7 @@ export const initialTasks: ITask[] = [
     categoryName: 'To Learn'
   },
   {
-    task: 'Vue.js',
+    task: 'Generate electricity from solar panel',
     createdDate: new Date('1999-03-04'),
     statusId: 0,
     status: 'To do',

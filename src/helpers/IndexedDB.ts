@@ -110,17 +110,14 @@ export const upsertRecordToIndexedDb = (data: any, key: string) => {
   })
 }
 
-export const clearIndexedDB = (): Promise<boolean> => {
+export const clearIndexedDB = (): Promise<string> => {
   const req = indexedDB.deleteDatabase('mtd')
   return new Promise((resolve, reject) => {
     req.onsuccess = () => {
-      resolve(true)
+      resolve('DB deleted successfully')
     }
-    req.onerror = () => {
-      resolve(false)
-    }
-    req.onblocked = () => {
-      resolve(false)
+    req.onerror = (e: any) => {
+      reject(`Error in DB delete: ${e.target.error}`)
     }
   })
 }

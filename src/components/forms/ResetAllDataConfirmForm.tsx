@@ -24,12 +24,11 @@ const ResetAllDataConfirmForm = () => {
 
     clearIndexedDB()
       .then((success) => {
-        if (success) {
-          location.reload()
-        } else {
-          alert('Clearing DB failed. Please try again!')
-          location.reload()
-        }
+        console.log('checking indexDB clear message', success)
+        location.reload()
+      }).catch((err) => {
+        console.error('error in clearing DB: ', err)
+        location.reload()
       })
   }
 

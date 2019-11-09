@@ -31,7 +31,7 @@ const ListPanelFlyout = () => {
 
   const listClickHandler = (listName: string) => {
     setCurrentData((prevCurrentData: ICurrentData) => {
-      return { ...prevCurrentData, currentListName: listName }
+      return { ...prevCurrentData, currentListName: listName, currentCategoryName: 'All Categories' }
     })
     setUiData((prevUiData: IUiData) => {
       return { ...prevUiData, listFlyout: false, backgroundDiv: false }

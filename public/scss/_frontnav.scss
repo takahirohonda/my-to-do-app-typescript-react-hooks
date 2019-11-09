@@ -87,8 +87,8 @@
 }
 
 .right-nav-menu.active {
-  width: 150px;
-  height: 141px;
+  width: 141px;
+  height: 180px;
   transition: all 0.1s ease-in;
 }
 
@@ -99,4 +99,7 @@
 
 .right-nav-ls {
   padding: 15px;
+  &:hover {
+    cursor: pointer;
+  }
 }

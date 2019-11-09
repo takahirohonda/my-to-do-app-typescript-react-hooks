@@ -39,6 +39,7 @@ export interface IUiData {
   listFlyout: boolean
   addList: boolean
   deleteListConfirm: boolean
+  resetAllDataConfirm: boolean
   addCategoryMenu: boolean
   addCategory: boolean
   deleteCategory: boolean

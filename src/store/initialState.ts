@@ -16,6 +16,7 @@ export const initialStateUi: IUiData = {
   listFlyout: false,
   addList: false,
   deleteListConfirm: false,
+  resetAllDataConfirm: false,
   addCategoryMenu: false,
   addCategory: false,
   deleteCategory: false,

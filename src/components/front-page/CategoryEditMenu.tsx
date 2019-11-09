@@ -135,6 +135,15 @@ const CategoryEditMenu = () => {
     })
   }
 
+  const resetAllDataLinkHandler = () => {
+    setUiData((prevUiData: IUiData): IUiData => {
+      return {
+        ...prevUiData,
+        backgroundDiv: true,
+        resetAllDataConfirm: true
+      }
+    })
+  }
   return (
     <>
       <AddCategoryForm
@@ -151,6 +160,7 @@ const CategoryEditMenu = () => {
         <ul className='right-nav-ul'>
           <li className='right-nav-ls' onClick={addCategoryLinkHandler}>Add Category</li>
           <li className='right-nav-ls' onClick={deleteCategoryLinkHandler}>Delete Category</li>
+          <li className='right-nav-ls' onClick={resetAllDataLinkHandler}>Reset All Data</li>
         </ul>
       </div>
     </>

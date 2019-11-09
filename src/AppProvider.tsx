@@ -24,36 +24,69 @@ import {
   CurrentContext,
   UiContext
 } from './AppContext'
+import { upsertRecordToIndexedDb } from './helpers/IndexedDB'
+import { getDataForContextApi } from './helpers/InitialiseDb'
 
 interface IMovieProviderProps {
   children?: JSX.Element[] | JSX.Element
 }
 
 const AppProvider = (props: IMovieProviderProps) => {
-  const [listData, setListData] = useState<IList[]>(JSON.parse(localStorage.getItem('mtdListData')) || initialList)
-  const [categoryData, setCategoryData] = useState<ICategory[]>(JSON.parse(localStorage.getItem('mtdCategoryData')) || initialCategories)
-  const [statusData, setStatusData] = useState<IStatus[]>(JSON.parse(localStorage.getItem('mtdStatusData')) || initialStatus)
-  const [taskData, setTaskData] = useState<ITask[]>(JSON.parse(localStorage.getItem('mtdTaskData')) || initialTasks)
-  const [currentData, setCurrentData] = useState<ICurrentData>(JSON.parse(localStorage.getItem('mtdCurrentData')) || initialStateCurrent)
-  const [uiData, setUiData] = useState<IUiData>(JSON.parse(localStorage.getItem('mtdUiData')) || initialStateUi)
+
+  const [listData, setListData] = useState<IList[]>(initialList)
+  const [categoryData, setCategoryData] = useState<ICategory[]>(initialCategories)
+  const [statusData, setStatusData] = useState<IStatus[]>(initialStatus)
+  const [taskData, setTaskData] = useState<ITask[]>(initialTasks)
+  const [currentData, setCurrentData] = useState<ICurrentData>(initialStateCurrent)
+  const [uiData, setUiData] = useState<IUiData>(initialStateUi)
 
   useEffect(() => {
-    localStorage.mtdListData = JSON.stringify(listData)
+    // get initial data
+    getDataForContextApi()
+    .then((data) => {
+      setListData(data[0])
+      setCategoryData(data[1])
+      setStatusData(data[2])
+      setTaskData(data[3])
+      setCurrentData(data[4])
+      setUiData(data[5])
+    })
+  }, [])
+
+  useEffect(() => {
+    if (listData !== initialList) {
+      upsertRecordToIndexedDb(listData, 'list')
+    }
   }, [listData])
+
   useEffect(() => {
-    localStorage.mtdCategoryData = JSON.stringify(categoryData)
+    if (categoryData !== initialCategories) {
+      upsertRecordToIndexedDb(categoryData, 'category')
+    }
   }, [categoryData])
+
   useEffect(() => {
-    localStorage.mtdStatusData = JSON.stringify(statusData)
+    if (statusData !== initialStatus) {
+    upsertRecordToIndexedDb(statusData, 'status')
+    }
   }, [statusData])
+
   useEffect(() => {
-    localStorage.mtdTaskData = JSON.stringify(taskData)
+    if (taskData !== initialTasks) {
+      upsertRecordToIndexedDb(taskData, 'task')
+    }
   }, [taskData])
+
   useEffect(() => {
-    localStorage.mtdCurrentData = JSON.stringify(currentData)
+    if (currentData !== initialStateCurrent) {
+      upsertRecordToIndexedDb(currentData, 'current')
+    }
   }, [currentData])
+
   useEffect(() => {
-    localStorage.mtdUiData = JSON.stringify(uiData)
+    if (uiData !== initialStateUi) {
+      upsertRecordToIndexedDb(uiData, 'ui')
+    }
   }, [uiData])
 
   return (

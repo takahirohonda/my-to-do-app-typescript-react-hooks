@@ -9,7 +9,7 @@ module.exports = (env, argv) => {
     mode: argv.mode || 'development',
     entry: './src/Index.tsx',
     output: {
-      path: path.join(__dirname, '/dist'),
+      path: path.join(__dirname, '../mydatahack.github.io/mtd'),
       filename: 'default.js'
     },
     resolve: {

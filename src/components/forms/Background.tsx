@@ -21,7 +21,8 @@ const Background = () => {
         backgroundDiv: false,
         listFlyout: false,
         addCategoryMenu: false,
-        addCategory: false
+        addCategory: false,
+        resetAllDataConfirm: false
       }
     })
   }

@@ -28,6 +28,7 @@
 .form-input::placeholder {
   color: $white;
   opacity: 0.8;
+  visibility: visible;
 }
 .form-input:focus {
   outline: none;
@@ -291,4 +292,18 @@
 .edit-task-container.active .task-input-save-tick {
   width: 45px;
   height: 45px;
+}
+
+/* reset all data */
+.reset-all-message-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+  align-items: center;
+}
+.reset-all-confirm-message {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.125rem;
+  margin-top: 10px;
 }

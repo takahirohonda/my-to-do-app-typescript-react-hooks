@@ -37,7 +37,8 @@ request.onupgradeneeded = e => {
   db = e.target.result
   const store = db.createObjectStore('mtd-data')
   console.log('created store: ', store)
-  // const store = db.createObjectStore('mtd-data', {keyPath: 'key', autoIncrement: true});
+  // const store = db.createObjectStore('mtd-data',
+  // {keyPath: 'key', autoIncrement: true});
   // store.createIndex('context', 'context', { unique: true })
   // store.createIndex('data', 'data', { unique: false })
 }
@@ -48,7 +49,6 @@ request.onsuccess = e => {
   if (!db.objectStoreNames.contains('mtd-data')) {
     const transaction = db.transaction(["mtd-data"], 'readwrite')
     const store = transaction.objectStore('mtd-data')
-    // const request = store.put(exampleData)
     exampleData.forEach((data, index) => {
       store.put(data, key[index])
       console.log('Upserted data: ', data)

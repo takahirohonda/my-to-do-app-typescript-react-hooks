@@ -3,6 +3,7 @@
 
 body {
   font-family: $mainFont, $mainFontFallBack;
+  overscroll-behavior: none;
 }
 
 html {

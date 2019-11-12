@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="Description" content="App to organise your life with to do list">
@@ -16,6 +16,7 @@
     if('serviceWorker' in navigator) {
       navigator.serviceWorker
         .register('/mtd/sw.js')
+        // .register('/sw.js')
         .then(function() { 
           // console.log("Service Worker Registered"); 
         });
@@ -24,6 +25,8 @@
     </script>
 </head>
 <body>
-  <div id="root"></div>
+  <div class="wrapper">
+    <div id="root"></div>
+  </div>
 </body>
 </html>

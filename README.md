@@ -8,6 +8,8 @@ To do app
 - IndexedDB
 - PWA
 
+Release to GooglePlay: [My To Do](https://play.google.com/store/apps/details?id=com.mdhmytodo.mdhmytodoapp)
+
 ## Get started
 
 ```bash

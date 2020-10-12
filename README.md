@@ -3,7 +3,7 @@
 To do app
 - React 16.11
 - TypeScript
-- ContextApi
+- Context API
 - Hooks
 - IndexedDB
 - PWA
@@ -59,7 +59,7 @@ If data is in the database, update only happens when the state is not the same a
 
 Main logic for IndexedDB operation is in src/helpers/IndexedDb.ts & src/helpers/InitialiseDb.ts.
 
-initialiseDb() uses add method, which means no update happens when the same key exists. So, calling DB initialisation on ComponentDidMount will not cause the data to be overwritten by initial state.
+initialiseDb() uses add method, which means no update happens when the same key exists. So, calling DB initialisation on componentDidMount will not cause the data to be overwritten by initial state.
 
 ```jsx
 const AppProvider = (props: IMovieProviderProps) => {
